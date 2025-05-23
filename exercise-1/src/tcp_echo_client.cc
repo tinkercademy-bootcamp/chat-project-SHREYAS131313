@@ -8,11 +8,12 @@
 
   int main(int argc, char* argv[]) {
     // #Question - are these the same type?
+    // Ans : No , "xyz" is of the type of char array, whereas string is of the type string
     std::string message = "Hello from client";
     if(argc>1){
       message=argv[1];
     }
-    const int kPort = 8080;
+    const int kPort = 35000;
     const std::string kServerAddress = "127.0.0.1";
     sockaddr_in address;
     const int kBufferSize = 1024;

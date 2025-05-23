@@ -5,3 +5,4 @@ build:
 	mkdir -p build
 clean:
 	rm -f build/client build/server
+	rm -d build

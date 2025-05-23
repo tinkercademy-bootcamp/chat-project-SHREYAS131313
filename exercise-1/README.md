@@ -82,13 +82,21 @@
   `"hello message from the command prompt"` to the server
 - Commit your changes into git
 - What do all these headers do?
+  - arpa/inet.h : Necessary for binary to string conversion , also used to store binary of an ip address (inet_pton) 
+  - sys/socket.h : For socket API's
+  - sys/types.h : Is needed to use data types required for various different calls
+  - unistd.h : Needs to be used for various system calls like read.write,open,close,etc
 - How do you find out which part of the below code comes from which header?
+  - Comment out that header to see which parts of the code give error or cntrl click on the function/part to go to that header.
 - How do you change the code so that you are sending messages to servers
   other than localhost?
+  - Change the ip address of that to the server's 
 - How do you change the code to send to a IPv6 address instead of IPv4?
+ - Use AF_INET6 instead AF_INET6
+ - Use struct sockaddr_in6 instead of struct sockaddr_in
 - **Bonus**: How do you change the client code to connect by hostname instead
   of IP address?
-  
+  - Maybe run dig user, by taking command line argument of user(name) , and then just look for the appropriate ip and then select it (though will need lot of big buffer to read output)?
 ## Introduction to Memory Management
 
 - What is happening in line 26 of `tcp-echo-client.cc`? 
@@ -96,6 +104,7 @@
 - What is happening in line 31 of `tcp-echo-client.cc`?
   `if (connect(my_sock, (sockaddr *)&address, sizeof(address)) < 0) {`
 - What is the difference between a pointer and a reference?
+ - Pointer 
 - When is it better to use a pointer?
 - When is it better to use a reference?
 - What is the difference between `std::string` and a C-style string?
