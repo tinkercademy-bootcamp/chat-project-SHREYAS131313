@@ -7,18 +7,32 @@
 - Answer the following questions in this file and commit and push your changes.
 - Bonus sections are more difficult and optional.
 - How can you find the information required to complete these tasks?
+  - Google it 
 - How can you tell if the source of your information is good?
+  - Reconfirm it from multiple sources
 - How would you define "good" in this situation?
+  - Something which is correct (tested).
 
 ## Learn Basics of g++ CLI
 
 - Compile the TCP client and server using `g++` from command line.
 - What are the most important command line arguments to learn for `g++`?
+  - -o : Allows us to choose executable file name
+  - -g : Lets debugging information to be included in executable
+  - -O2 -O3 -O : For Optimisation
+  - -O0 : Disables optimisation
+  - -Wall : To list all warnings
 - What is the difference between debug vs release versions?
+  - Debug versions generate debug statements and dont optimise, where as the release version has optimisation but does not generate debug statements.
 - What are the tradeoffs between debug and release versions?
+  - Debug versions is very slow , has a big binary , but can catch errors , assert failures easily.
+  - Release versions are optimised , small. 
 - What arguments would you use in a debug build?
+   - g++ &nbsp; -g &nbsp; -O0 &nbsp; -o &nbsp; myexec &nbsp; file.cpp
 - What about for release?
+  - g++ &nbsp; -O2 &nbsp; -O3 &nbsp; -o &nbsp; myexec &nbsp; file.cpp
 - What other kinds of build types are useful?
+
 
 ## Learn Basics of Make
 
@@ -31,13 +45,21 @@
   - Create `build/` directory if it does not exist
   - Create executables **client** and **server** in `build/`, if needed
   - How does make know when it needs to rebuild the executables?
+    - It compares the timestamp of the file to see if it has been modified.
   - Change your Makefile such that `make clean` will remove `build/` and all
     its contents
 - What are the most important command line arguments to learn for make?
+  - make -f filename : Uses "filename" instead of the default makefile
+  - make -c mydir , change directory to mydir before reading makefile
 - What are the most important directives to learn about in Makefile?
 - What are the most important commands to implement in your Makefile?
+  - Appropriate Targets , like all , clean , build ,etc
+  - Proper dependencies for each target
+  - Variables/built in variables, using dollar()/$ dollar{} to reference them.
+  - Default Target (first target, can have all as the first one to compile everything).
+  - PHONY :
 - Which ones are essential, which ones are nice to haves?
-
+    - Appropriate targets is essential , variables/default variables are nice to have.
 ## Learn Basics of Git
 
 - Read through the code in `src/`
@@ -45,6 +67,7 @@
 - Commit and push your changes to git
 - Each commit should be responding to a single task or question
 - Why is it important to keep your commit to a single task or question?
+  
 - Is it better to have a lot of very small commits, or one big commit when 
   everything is working?
 - What are the most important commands to know in git?
