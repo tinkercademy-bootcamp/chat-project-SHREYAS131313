@@ -92,7 +92,7 @@
   other than localhost?
   - Change the ip address of that to the server's 
 - How do you change the code to send to a IPv6 address instead of IPv4?
- - Use AF_INET6 instead AF_INET6
+  - Use AF_INET6 instead AF_INET6
  - Use struct sockaddr_in6 instead of struct sockaddr_in
 - **Bonus**: How do you change the client code to connect by hostname instead
   of IP address?
