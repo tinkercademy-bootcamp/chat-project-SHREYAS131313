@@ -96,26 +96,33 @@
  - Use struct sockaddr_in6 instead of struct sockaddr_in
 - **Bonus**: How do you change the client code to connect by hostname instead
   of IP address?
-  - Maybe run dig user, by taking command line argument of user(name) , and then just look for the appropriate ip and then select it (though will need lot of big buffer to read output)?
+  - Maybe run dig user, by taking command line argument of user(name) , and then just look for the appropriate ip and then select it (though will need lot of big buffer to read output)? or instead find DNS of the user and get his IP.
 ## Introduction to Memory Management
 
 - What is happening in line 26 of `tcp-echo-client.cc`? 
   `if (inet_pton(AF_INET, kServerAddress.c_str(), &address.sin_addr) <= 0) {`
+    - We use inet_pton to convert IP to binary and store in address , we also check if it returns a non positive value which indicates that the given IP address was not found/supported.
 - What is happening in line 31 of `tcp-echo-client.cc`?
   `if (connect(my_sock, (sockaddr *)&address, sizeof(address)) < 0) {`
+  - It sends a connection request to server , <0 if it fails , 0 is returned if success. Address (second parameter) searches for server's IP to connect. It opens a connection on the file descriptor (my_sock) which is closed at the end of the code.
 - What is the difference between a pointer and a reference?
- - Pointer 
+  - Pointer refers to something which stores memory of something. It can be changed to store memory of something else or even (null). Whereas, reference is just an alias of a quantity , it can't be modified to be an alias of something else and on changing value of it (the original value also changes). 
 - When is it better to use a pointer?
+  - Dynamic memory allocation , traversing something,etc
 - When is it better to use a reference?
+  - When a function needs to modify the original variable passed as an argument. This avoids copying large objects and allows direct modification.
 - What is the difference between `std::string` and a C-style string?
+  - Memory of `std::string` is managed automatically , whereas we have to manually manage for cstrings. Cstring ends with '\0', othing like that for strings .
 - What type is a C-style string?
+  - char *
 - What happens when you iterate a pointer?
+  - It points to the memory of the quantity stored in the new memory (depends on which data type is iterated).Dereferencing it gives value of that new quantity.
 - What are the most important safety tips to know when using pointers?
-
+  - Free/delete malloced/new'ed pointers or else it just leaks memory.Don't use a pointer after freed. Don't dereference nullpointers. 
 ## Learn Basics of Creating a C++ Project in Your IDE
 
 - How do you compile and run your project in your IDE?
-
+  - Use make to compile and just run the executables to run in our IDE.
 ## Improving Interactions with LLMs
 
 - What is the most authoritative source of information about `socket()`
