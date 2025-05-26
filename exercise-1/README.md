@@ -32,7 +32,10 @@
 - What about for release?
   - g++ &nbsp; -O2 &nbsp; -O3 &nbsp; -o &nbsp; myexec &nbsp; file.cpp
 - What other kinds of build types are useful?
-
+  - Release With Debug Info : Optimise Code with debug info preserved.    
+  - Minimum size release: Reduces the binary file size
+  - Sanitized: To catch runtime errors
+  - Test : Unit tests and integration test codes included.
 
 ## Learn Basics of Make
 
@@ -93,10 +96,10 @@
   - Change the ip address of that to the server's 
 - How do you change the code to send to a IPv6 address instead of IPv4?
   - Use AF_INET6 instead AF_INET6
- - Use struct sockaddr_in6 instead of struct sockaddr_in
+  - Use struct sockaddr_in6 instead of struct sockaddr_in
 - **Bonus**: How do you change the client code to connect by hostname instead
   of IP address?
-  - Maybe run dig user, by taking command line argument of user(name) , and then just look for the appropriate ip and then select it (though will need lot of big buffer to read output)? or instead find DNS of the user and get his IP.
+  - Maybe run dig user, by taking command line argument of user(name) , and then just look for the appropriate ip and then select it (though will need lot of big buffer to read output)? or instead find DNS of the user and get his IP using getaddrinfo().
 ## Introduction to Memory Management
 
 - What is happening in line 26 of `tcp-echo-client.cc`? 
@@ -127,11 +130,17 @@
 
 - What is the most authoritative source of information about `socket()`
   from `<sys/socket.h>`?
+  - POSIX specifications ,man 2 socket
 - What is the most authoritative source of information about the TCP and IP
   protocols?
+   -  Internet Engineering Task Force (IETF) 
 - What is the most authoritative source of information about the C++
   programming language?
+   - Cppreference.com and The ISO C++ Standard.
 - What information can you find about using Markdown when structuring prompts 
   to LLMs?
+    - It improves prompt readability for both the user and model, the model can read bold, italicised texts , headers and code blocks easily.
 - What is the difference between LLM and AI?
+  - LLM's are a type of AI model which is trained on certain data, whereas AI is any machine which performs tasks which requires human abilities , like undestanding , reasoning ,etc.
 - Is it grammatically correct in English to say "a LLM" or "an LLM"? Why?
+  - It is an LLM (because el-el-em).
