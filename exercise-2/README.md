@@ -49,7 +49,10 @@
 
 - Read the code in `src/`
 - Are there any bugs in this code? 
+  - One thing is if we read  kBufferSize in client and server , char array cannot store '\0' at the end, so increase the size of char array by 1 
+  - Also after every read , we have to manually put '\0' after the char array.
 - What can you do to identify if there are bugs in the code?
+  - Test it with edge cases(mainly testing with different variety/category of testcases) helps.
 
 ## Refactoring: Extract Function
 
