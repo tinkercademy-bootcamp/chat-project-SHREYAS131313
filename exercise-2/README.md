@@ -37,10 +37,13 @@
   C++ standard?
    - No , it should follow C++ standard.
 - What are the most widely used and most significant C++ compilers?
+  - g++ , Clang
 - Where is the equivalent spec for C++26?
-
+   - https://github.com/cplusplus/draft is the ongoing source files available.
 - Where do you find the spec for the HTTP protocol?
+   - https://www.rfc-editor.org/rfc/rfc9110.html is the latest specifications document.
 - What about HTTPS? Is there a spec for that protocol?
+  - There is no specific spec , as it is built by HTTP + TLS(Transport layer security).
 
 ## Introduction to C++ and Sockets Programming
 
