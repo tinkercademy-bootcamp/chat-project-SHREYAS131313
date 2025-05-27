@@ -59,6 +59,7 @@
 - What is different in this code compared to exercise-1?
   - The code is modular in exercise-2 (each part is having its own function call)
 - Is this code better or worse than exercise-1?
+  - This is better than exercise-1 , as it is easier to read, debug and understand the code. 
 - What are the tradeoffs compared to exercise-1?
 - Are you able to spot any mistakes or inconsistencies in the changes?
   
