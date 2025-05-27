@@ -26,7 +26,9 @@
 - [C++23 ISO standard draft](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2023/n4950.pdf) - 
   Working draft of the C++ language specification
 - Is the above the official C++23 spec? 
+  - No, this is not the official C++ 23 . The official spec needs to be purchased.
 - Where is the official C++23 spec?
+  - https://www.iso.org/standard/83626.html
 - Why was this link chosen instead?
 - Is this a helpful reference for learning C++?
 - Can the various implementations of C++ compilers be different from the
