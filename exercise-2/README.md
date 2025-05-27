@@ -12,6 +12,7 @@
   overview and protocol families
 - Or type `man 7 socket` in terminal
 - When would you want to use a `SOCK_RAW` stream?
+  - A raw socket allows an application to directly access lower level protocols, which means a raw socket receives un-extracted packets . There is no need to provide the port and IP address to a raw socket, unlike in the case of stream and datagram sockets.
 
 ### TCP and IP Protocols
 - [IPv4](https://www.rfc-editor.org/info/rfc791) - Internet Protocol 

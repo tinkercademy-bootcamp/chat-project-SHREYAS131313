@@ -13,7 +13,7 @@
     if(argc>1){
       message=argv[1];
     }
-    const int kPort = 35000;
+    const int kPort = 8080;
     const std::string kServerAddress = "127.0.0.1";
     sockaddr_in address;
     const int kBufferSize = 1024;
