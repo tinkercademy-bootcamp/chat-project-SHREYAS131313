@@ -61,6 +61,7 @@
 - Is this code better or worse than exercise-1?
   - This is better than exercise-1 , as it is easier to read, debug and understand the code. 
 - What are the tradeoffs compared to exercise-1?
+  - This is good for debugging , understanding , etc , whereas one thing which is bad is , it leads to a higher number of jump instructions at the assembly level, especially when using function calls. 
 - Are you able to spot any mistakes or inconsistencies in the changes?
   
 ## Thinking About Performance
