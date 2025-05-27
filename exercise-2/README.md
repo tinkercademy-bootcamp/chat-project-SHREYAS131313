@@ -30,6 +30,7 @@
 - Where is the official C++23 spec?
   - https://www.iso.org/standard/83626.html
 - Why was this link chosen instead?
+  - It is chosen because it is free , unlike the official spec , and is somewhat similar (draft) of C++ 23 spec.
 - Is this a helpful reference for learning C++?
 - Can the various implementations of C++ compilers be different from the
   C++ standard?
