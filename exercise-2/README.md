@@ -32,8 +32,10 @@
 - Why was this link chosen instead?
   - It is chosen because it is free , unlike the official spec , and is somewhat similar (draft) of C++ 23 spec.
 - Is this a helpful reference for learning C++?
+   - Not really , it seems very structred draft, clearing doubts using this might not be the best , we can use cppreference.com instead.
 - Can the various implementations of C++ compilers be different from the
   C++ standard?
+   - No , it should follow C++ standard.
 - What are the most widely used and most significant C++ compilers?
 - Where is the equivalent spec for C++26?
 
