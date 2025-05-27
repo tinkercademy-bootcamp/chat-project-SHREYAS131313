@@ -63,12 +63,15 @@
 - What are the tradeoffs compared to exercise-1?
   - This is good for debugging , understanding , etc , whereas one thing which is bad is , it leads to a higher number of jump instructions at the assembly level, especially when using function calls. 
 - Are you able to spot any mistakes or inconsistencies in the changes?
-  
+  - No 
 ## Thinking About Performance
 
 - Does writing code this way have any impact on performance?
+  - Not really , though they have a small overhead , with optimised compilers , it does not affect that much.
 - What do we mean when we say performance?
+  - It means how much efficiently the program runs.
 - How do we measure performance in a program?
+  - We can use std::chrono::high_resolution_clock::now() to measure high resolution time.
 
 ## Play with Git
 
