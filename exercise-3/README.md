@@ -46,7 +46,10 @@
 - What happens when you look at a `std::string` using the above methods?
 - Where is the text in your `std::string`?
 - What is `std::optional`?
+  - It is a wrapper, which allows an option of having no value (assign nullopt). This allows us to not unnecessarily specify what is the default no value is represented.
 - How do you find out the memory layout of a `std::optional`?
+  - I played randomly with it , it has  things , the flag(0/1),which can be accessed with `.has_value()` and variable. 
+  - When we use -O2/-O3 optimising flags , after assigning `nullopt` , the variable will erase value stored , but without any optimisation it will still have the value stored. 
 - Read https://en.cppreference.com/w/cpp/memory#Smart_pointers - Guide to 
   modern C++ memory management using smart pointers
 - Which pointer types are the most important to know about?
@@ -58,6 +61,7 @@
 
 - After your experiments with Compiler Explorer, do you have any updates for
   your answers in exercise-2?
+   - Especially after looking at assembly code lines of modular code , I realise modular code is not always the optimised code, and even if we use it , we should optimise it very well by taking advantage of using things which don't make the code long.
 
 ### Bonus: Do Not Watch Now 
 
