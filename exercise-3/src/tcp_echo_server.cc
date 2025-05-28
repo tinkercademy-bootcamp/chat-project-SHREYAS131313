@@ -6,22 +6,24 @@
 
 const int kBufferSize = 1024;
 
-int create_socket() {
-  int my_sock;
-  if ((my_sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-    std::cerr << "Socket creation error\n";
+void check_error(bool test, std::string error_message) {
+  if (test) {
+    std::cerr << error_message << "\n";
     exit(EXIT_FAILURE);
   }
+}
+
+int create_socket() {
+  int my_sock=socket(AF_INET, SOCK_STREAM, 0);
+  check_error(my_sock<0,"Socket creation error\n");
   return my_sock;
 }
 
 bool set_socket_options(int sock, int opt) {
-  if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
-                 sizeof(opt)) < 0) {
-    std::cerr << "setsockopt() error\n";
-    close(sock);
-    exit(EXIT_FAILURE);
-  }
+  auto errorflag=setsockopt(sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt,
+                 sizeof(opt));
+  check_error(errorflag<0,"setsockopt() error\n");
+  // close(sock);
   return true;
 }
 
@@ -34,19 +36,16 @@ sockaddr_in create_address(int port) {
 }
 
 void bind_address_to_socket(int sock, sockaddr_in &address) {
-  if (bind(sock, (sockaddr *)&address, sizeof(address)) < 0) {
-    std::cerr << "bind failed\n";
-    close(sock);
-    exit(EXIT_FAILURE);
-  }
+  auto errorflag=bind(sock, (sockaddr *)&address, sizeof(address));
+  check_error(errorflag<0,"bind failed\n");
+  // close(sock);
 }
 
 void listen_on_socket(int sock) {
-  if (listen(sock, 3) < 0) {
-    std::cerr << "listen failed\n";
-    close(sock);
-    exit(EXIT_FAILURE);
-  }
+  auto errorflag=listen(sock,3);
+  check_error(errorflag<0,"listen failed\n");
+    // close(sock);
+ 
 }
 
 void start_listening_on_socket(int my_socket, sockaddr_in &address) {
@@ -55,6 +54,7 @@ void start_listening_on_socket(int my_socket, sockaddr_in &address) {
 
   bind_address_to_socket(my_socket, address);
   listen_on_socket(my_socket);
+  // close(my_socket);
 }
 
 void handle_accept(int client_socket) {
@@ -77,7 +77,8 @@ void handle_connections(int sock, int port) {
   sockaddr_in address = create_address(port);
   socklen_t address_size = sizeof(address);
 
-  // #Task - is it good to have an infinite loop?
+  // #Question - is it good to have an infinite loop?
+  // Yes , server needs to keep waiting for clients need to join and communicate
   while (true) {
     int accepted_socket = accept(sock, (sockaddr *)&address, &address_size);
     if (accepted_socket < 0) {
@@ -94,7 +95,8 @@ int main() {
   int my_socket = create_socket();
   sockaddr_in address = create_address(kPort);
 
-  // #Task - is there a better name for this function?
+  // #Question - is there a better name for this function?
+  // Seems fine 
   start_listening_on_socket(my_socket, address);
   std::cout << "Server listening on port " << kPort << "\n";
   handle_connections(my_socket, kPort);
