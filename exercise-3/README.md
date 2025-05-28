@@ -8,8 +8,11 @@
 - A new function `check_error()` has been created and `create_socket()` from 
   exercise-2 has been refactored to make use of it
 - What are the benefits of writing code in this way?
+  - The code is modular, so easily readable instead of multiple cerr:error message and exits. 
 - Are there any costs to writing code like this?
+  - Multiple function calls gives a slight overhead , but the main issue is it is not flexible, if we dont want to exit sometimes ,like in the while loop of server, but still need to check for errors ,this won't work.
 - Apply `check_error` to all the code in `src/`
+  - Done
 
 ## Introduction to Compiler Explorer
 

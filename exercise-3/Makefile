@@ -1,0 +1,8 @@
+compile: build
+	g++ -g src/tcp_echo_client.cc -o build/client
+	g++ -g src/tcp_echo_server.cc -o build/server
+build:
+	mkdir -p build
+clean:
+	rm -f build/client build/server
+	rm -d build
