@@ -1,6 +1,9 @@
+CXX_FLAGS := g++ -O2 -Wall -g -std=c++20
+LD_FLAGS := -fsanitize=address
+
 all: build
-	g++ src/tcp_echo_client.cc -o build/client
-	g++ src/tcp_echo_server.cc -o build/server
+	$(CXX_FLAGS) $(LD_FLAGS) src/tcp_echo_client.cc -o build/client
+	$(CXX_FLAGS) $(LD_FLAGS) src/tcp_echo_server.cc -o build/server
 assemb: build
 	g++ -S src/tcp_echo_client.cc -o build/client.s
 	g++ -S src/tcp_echo_server.cc -o build/server.s
