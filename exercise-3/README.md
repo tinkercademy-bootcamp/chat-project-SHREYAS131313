@@ -20,9 +20,12 @@
   `create_socket()` in [Compiler Explorer](https://godbolt.org) - Interactive 
   tool for exploring how C++ code compiles to assembly
 - What is happening here?
+  - This website allows us to view the corresponding .s file (assembly code). When we have old `create_socket()` , the assemble code is straight forward and has only 22/19 lines , whereas the new version is 83/75 lines of assembly code , even without/with -O2 optimisation respectively. This as we discussed before is due to multiple function calls (with especially std::string usage for error message which needs to be dynamically constructed,allocate memory,constructor , destructor, etc) which increases the number of lines of assembly code.
 - Can you think of any different approaches to this problem?
+  - We can improve it by using inline functions(for `error_check`), const char* instead of string which reduces it to 44 lines.  
 - How can you modify your Makefile to generate assembly code instead of
   compiled code?
+    - We can add a -S flag which tells it to stop after getting .s file
 - **Note**: You can save the generated assembly from Compiler Explorer
 - **Bonus**: Can you view assembly code using your IDE?
 - **Bonus**: How do you see the assembly when you step through each line in
