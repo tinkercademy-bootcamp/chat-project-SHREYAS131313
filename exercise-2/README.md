@@ -82,8 +82,10 @@
 - Make sure to commit each change as small and self-contained commit
 - This will make it easier to revert your code if you need to
 - What is `git tag`? How is `git tag` different from `git branch`?
+  - git tag is a a fixed marker pointing to a specific commit, whereas branch is a pointer to a moving commit . Tag can't be used to track modifications , it is fixed.
 - How can you use `git tag` and `git branch` to make programming easier and
   more fun?
+    -  git tag can be used to mark certain versions , bookmark releases, while git branch can be used to test ideas independently without affecting the main branch.
 
 ## Learn Basics of Debugging in Your IDE
 
