@@ -7,8 +7,12 @@
 - Move code that can be shared between `tcp_echo_server.cc` and 
   `tcp_echo_client.cc` to separate `.h` and `.cc` files
 - How would you compile from the command line?
+  - From `src` we run, 
+  -   `g++ shared.cpp tcp_echo_client.cpp -o ./client `
 - How would you compile using make?
+  - Just use the same command in Makefile
 - How would you compile using VS Code?
+  - In `.vscode` , add `tasks.json` and add required arguments , then `Cntrl+Shit+P` and choose `Run Tasks` and choose Build Server/Client .
 
 ### Compiling vs Linking
 
