@@ -6,7 +6,9 @@
 
 - What's an easy way to identify the changes in source code from one exercise
   to another?
-    
+    - We can use the `diff` command , with appropriate flags like `-u` (unified mode , where first and second file removals and additions(resp) are shown with --- and +++ respectively).
+    - Some other flags like , `-c` , `--brief`, etc can be used.
+    - `diff exercise-4/src/tcp_echo_client.cpp exercise-5/src/client-main.cc`
 ## Using Classes
 
 - Here is one way to separate out the code into multiple files
