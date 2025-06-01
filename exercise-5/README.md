@@ -80,4 +80,6 @@
 - How many senses do humans have?
   - 5 senses.
 - When would you want to see something before you touch it?
+  - When we have to understand some big codebase , it would be better if we first understand it , before modifying it and spoiling something(if we touch first before seeing it).
 - When would you want to touch something before you see it?
+  - If the thing which we touch is some functionality , which we want to use, without modifying it , we can use it to understand.
