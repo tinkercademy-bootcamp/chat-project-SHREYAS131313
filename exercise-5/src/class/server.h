@@ -6,13 +6,13 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string>
+#include "../shared.h"
 
 class Server
 {
 public:
   Server(int port);
   ~Server();
-
   void start();
 
 private:
