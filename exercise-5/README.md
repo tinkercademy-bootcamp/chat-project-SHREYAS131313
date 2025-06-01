@@ -24,6 +24,20 @@
 
 - There are different ways namespace is being used in this exercise
 - Which way is better? What are the advantages and disadvantages?
+   - There are 3 ways in which it is written in.
+    - (1) `namespace tt::chat::server {  }` : Functions are written inside this.
+   
+    - (2)  `namespace ttc = tt::chat; ` : Functions in this scope is written as `ttc::func()` . 
+    - (3) 'using namespace `tt::chat` 
+
+    - (1) Adv: Groups related functions cleanly — everything inside belongs to `tt::chat::server`
+    - (1) Disadv: Every time you use a function outside, you have to prefix it.Also, if any other namespace inside is to be used, have to specify it and use it independently.
+    - (2) Adv: Easier to type(makes long types short).
+    - (2) Disadv: Still we have to write `xyz::' everytime.
+    - (3) Adv: Very very easier to write.
+    - (3) Disadv: If multiple prefixes(scopes) are required , this is uselsess, it cannot do anything.
+
+    - I personally like (2) as it can reduce typing everytime and still easy.
 
 ## Abstracting Code into Classes
 
