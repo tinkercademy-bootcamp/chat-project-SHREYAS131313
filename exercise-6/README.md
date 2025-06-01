@@ -15,8 +15,13 @@
   - Add `-lfmt -lpthread` to `LDFLAGS`.
   - Add `spdlog/include` in `INC_DIRS`.
 - How many different ways can this library be added into your project?
+  - (1) Use `apt` to install 
+  - (2) Clone it from github link given
 - What are the tradeoffs in the different ways?
+  - (1) is easy to install ,and installs to standard paths , but the tradeoff is that it might not be the recent version, and it is hard to modify it.
+  - (2) is not very straight forward to install(set appropriate paths), but it is the most recent version , and also customizable.
 - Why are there so many different ways to do it?
+  - There are so many ways because of different needs for users , maybe they want to customise it according to theor needs , so recent version can be obtained from github.
   
 ## Static Linking vs Dynamic Linking
 
