@@ -12,12 +12,13 @@ class Client{
   public:
   Client(int port,const std::string &ip);
   ~Client();
-  void start();
+  void start(int argc,char* argv[]);
   private:
     int cli_port;
   sockaddr_in serv_address;
   std::string serv_ip;
   int socket_fd;
+  
   sockaddr_in create_address(const std::string &server_ip, int port);
   void connect_to_server(int sock, sockaddr_in &server_address);
   void send_and_receive_message(int sock, const std::string &message) ;
