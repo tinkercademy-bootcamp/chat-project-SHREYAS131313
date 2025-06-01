@@ -69,6 +69,7 @@
    - Not really , but intutively it has to mean something is wrong with the code , like how it is used in English - `Something smells fishy`.
 - What does it mean to have a sense of taste in programming? How can code
   taste?
+    - Sense of Taste means having an intution for what makes code better, elegant,optimised.
 - Is there an analogue for every sense?
 - What other code senses can you think of?
 - How many senses do humans have?
