@@ -26,8 +26,22 @@
 ## Static Linking vs Dynamic Linking
 
 - What are the differences between static linking and dynamic linking?
+  - Static Linking : Happens at compile time and executable is obtained. 
+  - Dynamic Linking : Object files are linked during runtime(external libraries are loaded into memory during runtime)
 - What are the tradeoffs?
+  - Static Linking : 
+  - (1) Binary file is large.
+  - (2) Faster (to run)
+  - (3) Harder to update libraries.
+  - (4) Easy deployment into other systems, as executable can be easily run.
+  - Dynamic Linking :
+  - (1) Binary file is small.
+  - (2) Slightly Slower(as linking is done in runtime).
+  - (3) Easier to update libraries.
+  - (4) Hard to deploy into other systems.
 - How do you enable static linking or dynamic linking in your makefile?
+  - Dynamic Linking is default , so no need to do anything in Makefile.
+  - Static Linking : Add `-static` to `LDFLAGS` .
 
 ## Git Clone and Building from Source
 
