@@ -12,7 +12,7 @@ CXX_RELEASE_FLAGS :=-O3
 CXXFLAGS += $(CXX_DEBUG_FLAGS)
 
 # The linker flags. These are passed to the linker when we link our object files together.
-LDFLAGS := -fsanitize=address
+LDFLAGS := -fsanitize=address -lfmt -lpthread
 
 BUILD_DIR := build
 SRC_DIR := src
@@ -32,7 +32,8 @@ NON_MAIN_OBJS := $(filter-out %main.cc.o, $(OBJS))
 DEPS := $(OBJS:.o=.d)
 
 # Every folder in ./src will need to be passed to GCC so that it can find header files
-INC_DIRS := $(shell find $(SRC_DIR) -type d)
+INC_DIRS := $(shell find $(SRC_DIR) -type d) spdlog/include
+
 # Add a prefix to INC_DIRS. So moduleA would become -ImoduleA. GCC understands this -I flag
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
@@ -41,13 +42,16 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 # These files will have .d instead of .o as the output.
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
 
-all: $(BUILD_DIR)/server $(BUILD_DIR)/client
+all: $(BUILD_DIR)/server $(BUILD_DIR)/client $(BUILD_DIR)/logs
 	
 $(BUILD_DIR)/server: $(BUILD_DIR)/src/server-main.cc.o $(NON_MAIN_OBJS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(BUILD_DIR)/src/server-main.cc.o $(NON_MAIN_OBJS) -o $(BUILD_DIR)/server $(LDFLAGS)
 
 $(BUILD_DIR)/client: $(BUILD_DIR)/src/client-main.cc.o $(NON_MAIN_OBJS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(BUILD_DIR)/src/client-main.cc.o $(NON_MAIN_OBJS) -o $(BUILD_DIR)/client $(LDFLAGS)
+
+$(BUILD_DIR)/logs: src/spdlog-hello-world-main.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) src/spdlog-hello-world-main.cc -o build/logs
 
 $(BUILD_DIR)/%.cc.o: %.cc
 	mkdir -p $(dir $@)
