@@ -44,8 +44,14 @@
 - Abstract the client and server logic into a `Client` and `Server` class
 - **Note**: You don't have to use the code in this exercise as a starting point
 - You can use the code you wrote from previous exercises instead
-- How should you divide the code into files?
-- What namespace and directory structure should you use? Why?
+- How should you divide the code into files? What namespace and directory structure should you use? Why?
+  - I did it as follows:
+  - I reused my code from previous exercise.
+  - In src, I have a directory `class` , which has `client.cc` , `client.h` , `server.cc` and  `server.h` , with the classes and all the functions.
+  - In src, I have `class-main-client.cc` and `class-main-server.cc`, which call the functions in `main()`.
+  - I also have `shared.cc` and `shared.h` (which had `check_error` ) which I had done in previous exercise.
+  - Finally, I have a seperate `Makefile` in src for compiling these programs, and on compiling, creates a directory `build` in src, which has `class_server` and `class_client` executables. 
+
 
 ## Programming Sense of Taste
 
