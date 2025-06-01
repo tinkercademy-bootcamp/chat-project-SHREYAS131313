@@ -9,7 +9,11 @@
   [More info here](https://github.com/gabime/spdlog) - Fast C++ logging 
   library with various sink types and formatting options
 - How do you compile this file using the `g++` CLI?
+  - `g++ -o logs src/spdlog-hello-world-main.cc -I./spdlog/include -lpthread`
 - What do you need to change in your makefile to use this library?
+  - Compile `spdlog-hello-world-main.cc` and save executable in build.
+  - Add `-lfmt -lpthread` to `LDFLAGS`.
+  - Add `spdlog/include` in `INC_DIRS`.
 - How many different ways can this library be added into your project?
 - What are the tradeoffs in the different ways?
 - Why are there so many different ways to do it?
