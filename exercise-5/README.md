@@ -56,8 +56,11 @@
 ## Programming Sense of Taste
 
 - How do you judge what makes a particular choice of namespace and directory
-  structure? 
+  structure?
+   - Clarity in using them(naming,etc) and ease of usage is the top priority for any choice of namespace. 
+   - The next major factor is how much modular the code is(which also comes under ease of usage,more modular , more is the ease of usage).
 - How do you judge what makes a good naming convention or programming style?
+  - A good naming convention is to be consistent across a project or similar,so that a person reading our code can easily understand what our code does. Additionally, the naming must be short, but should perfectly explain the use of it(variables, function names).
 
 ## "Senses" in Programming
 
