@@ -66,6 +66,7 @@
 
 - Have you ever heard of programmers referring to "code smells"? How can code
   smell?
+   - Not really , but intutively it has to mean something is wrong with the code , like how it is used in English - `Something smells fishy`.
 - What does it mean to have a sense of taste in programming? How can code
   taste?
 - Is there an analogue for every sense?
