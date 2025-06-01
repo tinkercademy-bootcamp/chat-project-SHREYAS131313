@@ -17,6 +17,8 @@
   - It is still good as you can switch between different namespaces (with) same names (for different functionalities), just by stating the path(the scopes in which it was defined) and use it freely.
   
 - What are the advantages and disadvantages?
+  - Advantage:It is useful,as mentioned above in big projects , which have some functionality(different) in 2 different scopes, which can be used easily by nesting(stating the scopes), it provides abstaction.
+  - Disadvantage: It can get very complex, better not have it sometimes.
 
 ## Introduction to Namespace
 
