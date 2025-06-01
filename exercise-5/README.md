@@ -71,7 +71,13 @@
   taste?
     - Sense of Taste means having an intution for what makes code better, elegant,optimised.
 - Is there an analogue for every sense?
+  - Sight : Readabilty/understandabilty  of code.
+  - Touch : How easy it is to change/add the code.
+  - Hear : Means how good feedback the code gives - warnings,etc.
 - What other code senses can you think of?
+  - One is to write good test cases (edge cases,to try and break the code).
+  - Debugging is also a good sense.
 - How many senses do humans have?
+  - 5 senses.
 - When would you want to see something before you touch it?
 - When would you want to touch something before you see it?
