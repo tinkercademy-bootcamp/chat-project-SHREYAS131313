@@ -46,7 +46,20 @@
 ## Git Clone and Building from Source
 
 - Where is `g++` looking for the include files and library files?
+  - Include files:
+  -  `/usr/include/c++/14`
+  - `/usr/include/aarch64-linux-gnu/c++/14`
+  - `/usr/include/c++/14/backward`
+  - `/usr/include/aarch64-linux-gnu`
+  - `/usr/include`
+  - Additional directories specified by -I flag
+  - Library files:
+  - `/usr/lib/gcc/aarch64-linux-gnu/14/include`
+  - `/usr/local/include`
+  - Additional directories specified by -L flag
+
 - How do you find out?
+  - I cntrl+clicked on iostream to get the first `/c++/14` path , then I ran `echo | g++ -E -xc++ - -v` to get all the places it searches for.
 
 ## C++ Package Managers
 
