@@ -13,6 +13,9 @@
 
 - Here is one way to separate out the code into multiple files
 - Is this the best way to do it? 
+  - It is good , but may not be the best. Some things which I noticed was to use alias declaration at the start of every function , instead of once.
+  - It is still good as you can switch between different namespaces (with) same names (for different functionalities), just by stating the path(the scopes in which it was defined) and use it freely.
+  
 - What are the advantages and disadvantages?
 
 ## Introduction to Namespace
