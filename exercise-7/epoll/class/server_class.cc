@@ -60,6 +60,9 @@ void Server::start_listening_on_socket(int my_socket, sockaddr_in &address)
   bind_address_to_socket(my_socket, address);
   listen_on_socket(my_socket);
 }
+void Server::epoll_create(){
+  
+}
 
 void Server::handle_accept(int sock)
 {
