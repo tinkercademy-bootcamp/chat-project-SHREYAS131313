@@ -10,13 +10,27 @@ Client::~Client()
 {
   close(socket_fd);
 }
-int Client::start(int argc,char *argv[])
+int Client::start(int argc, char *argv[])
 {
   std::string message = read_args(argc, argv);
   int my_socket = create_socket();
   sockaddr_in server_address = create_address(serv_ip, cli_port);
   connect_to_server(my_socket, server_address);
   send_and_receive_message(my_socket, message);
+  while (true)
+  {
+    std::string input;
+    std::getline(std::cin, input);
+
+    if (input == "/quit")
+    {
+      break;
+    }
+    // Send the message to the server
+    // send(my_socket, input.c_str(), input.size(), 0);
+    send_and_receive_message(my_socket,input);
+  }
+
   close(my_socket);
   return 1;
 }

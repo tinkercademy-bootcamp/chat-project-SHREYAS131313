@@ -4,6 +4,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <string>
 #include <sys/epoll.h>
@@ -19,6 +20,12 @@ public:
   Server(int port);
   ~Server();
   void start();
+  std::string get_username(int client_fd) const;
+  bool is_logged_in(int client_fd) const;
+  void add_pending_username(int client_fd);
+  void remove_pending_username(int client_fd);
+  void set_client_username(int client_fd, const std::string &username);
+  void remove_client_username(int client_fd);
 
 private:
   int serv_port;
@@ -26,8 +33,11 @@ private:
   sockaddr_in serv_address;
   int epoll_fd;
   int event_count = 0;
+  std::unordered_set<int> pending_usernames;
+  std::unordered_map<int, std::string> client_usernames;
 
   ChannelManager channel_manager;
+  ClientManager client_manager;
 
   struct epoll_event event, events[MAX_EVENTS];
   void e_poll_create();
@@ -40,7 +50,7 @@ private:
   void start_listening_on_socket(int my_socket, sockaddr_in &address);
   void epoll_create();
   void handle_accept(int sock);
-  std::string_view read_msgs(int sock);
+  // std::string_view read_msgs(int sock);
   void handle_connections(int sock, int port);
 };
 
