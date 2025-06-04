@@ -8,6 +8,9 @@
 #include <string>
 #include <sys/epoll.h>
 #include "../shared/shared.h"
+#include "../manager/channel_manager.h"
+#include "../manager/client_manager.h"
+
 #define MAX_EVENTS 5
 
 class Server
@@ -23,6 +26,9 @@ private:
   sockaddr_in serv_address;
   int epoll_fd;
   int event_count = 0;
+
+  ChannelManager channel_manager;
+
   struct epoll_event event, events[MAX_EVENTS];
   void e_poll_create();
   void e_poll_register();
@@ -34,7 +40,7 @@ private:
   void start_listening_on_socket(int my_socket, sockaddr_in &address);
   void epoll_create();
   void handle_accept(int sock);
-  std::string_view Server::read_msgs(int sock);
+  std::string_view read_msgs(int sock);
   void handle_connections(int sock, int port);
 };
 

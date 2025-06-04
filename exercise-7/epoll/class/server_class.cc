@@ -91,6 +91,7 @@ std::string_view Server::read_msgs(int sock)
   else
   {
     std::cerr << "Read error on client socket " << sock << "\n";
+    return "";
   }
 }
 

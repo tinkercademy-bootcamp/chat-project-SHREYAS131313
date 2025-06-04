@@ -12,16 +12,16 @@
 
 class Channel{
 public:
+    Channel()=default;
     explicit Channel(std::string channel_nm);
-
-    void addUser(int client_fd);
-    void removeUser(int client_fd);
+    bool addUser(int client_fd);
+    bool removeUser(int client_fd);
     int getID();
-    std::string getName();
-    std::unordered_set<int> getUsers();
+    std::string getName() const;
+    std::unordered_set<int> getUsers() const;
 
 private:
-    int channel_id;
+    // int channel_id;
     std::string channel_name;
     std::unordered_set<int> channel_users;
 };
