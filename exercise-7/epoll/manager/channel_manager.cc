@@ -34,3 +34,14 @@ bool ChannelManager::leaveChannel(const std::string& channel_name, int client_fd
 std::unordered_map<std::string, Channel>& ChannelManager::getChannels() {
     return channels_list;
 }
+
+std::string ChannelManager::listChannels() {
+    
+    if (channels_list.empty()) return "No channels available.\n";
+
+    std::string result = "Available channels:\n";
+    for (const auto& [name, _] : channels_list) {
+        result += "- " + name + "\n";
+    }
+    return result;
+}

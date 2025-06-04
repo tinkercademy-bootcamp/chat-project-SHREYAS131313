@@ -70,30 +70,7 @@ void Server::start_listening_on_socket(int my_socket, sockaddr_in &address)
   bind_address_to_socket(my_socket, address);
   listen_on_socket(my_socket);
 }
-// std::string_view Server::read_msgs(int sock)
-// {
-//   const int kBufferSize = 1024;
-//   char buffer[kBufferSize] = {0};
-//   ssize_t read_size = read(sock, buffer, kBufferSize);
 
-//   check_error(read_size < 0,
-//               "Read error on client socket " + std::to_string(sock));
-
-//   if (read_size > 0)
-//   {
-//     std::string_view msg_recv(buffer, read_size);
-//     return msg_recv;
-//   }
-//   else if (read_size == 0)
-//   {
-//     return "";
-//   }
-//   else
-//   {
-//     std::cerr << "Read error on client socket " << sock << "\n";
-//     return "";
-//   }
-// }
 
 void Server::handle_accept(int client_fd)
 {
@@ -210,9 +187,9 @@ void Server::handle_connections(int sock, int port)
           }
           else
           {
-            std::cout<<"000"<<'\n';
             // Handle command or message
-            // client_manager.handle_client_message(fd, recv_msg);
+            auto parsed_result=parse_command(recv_msg);
+            client_manager.handle_client_message(fd, std::string(parsed_result.first),std::string(parsed_result.second));
           }
         }
       }

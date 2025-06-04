@@ -7,9 +7,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string>
+#include <unordered_set>
 #include <sys/epoll.h>
 #include "../shared/shared.h"
-#include "../manager/channel_manager.h"
 #include "../manager/client_manager.h"
 
 #define MAX_EVENTS 5
@@ -36,7 +36,6 @@ private:
   std::unordered_set<int> pending_usernames;
   std::unordered_map<int, std::string> client_usernames;
 
-  ChannelManager channel_manager;
   ClientManager client_manager;
 
   struct epoll_event event, events[MAX_EVENTS];

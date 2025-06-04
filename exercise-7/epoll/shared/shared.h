@@ -10,6 +10,8 @@
 
 void check_error(bool test, std::string error_message);
 int create_socket();
+std::pair<std::string_view, std::string_view> parse_command(std::string_view input);
+
 // sockaddr_in create_address(int port);
 
 #endif
