@@ -18,22 +18,24 @@ public:
   void start();
 
 private:
-int serv_port;
-int socket_fd;
-sockaddr_in serv_address;
-int epoll_fd;
-struct epoll_event event, events[MAX_EVENTS];
-void e_poll_create();
-void epoll_register();
+  int serv_port;
+  int socket_fd;
+  sockaddr_in serv_address;
+  int epoll_fd;
+  int event_count = 0;
+  struct epoll_event event, events[MAX_EVENTS];
+  void e_poll_create();
+  void e_poll_register();
 
-void set_socket_options(int sock, int opt) ;
-sockaddr_in create_address(int port);
-void bind_address_to_socket(int sock, sockaddr_in &address);
-void listen_on_socket(int sock) ;
-void start_listening_on_socket(int my_socket, sockaddr_in &address);
-void epoll_create();
-void handle_accept(int sock);
-void handle_connections(int sock, int port);
+  void set_socket_options(int sock, int opt);
+  sockaddr_in create_address(int port);
+  void bind_address_to_socket(int sock, sockaddr_in &address);
+  void listen_on_socket(int sock);
+  void start_listening_on_socket(int my_socket, sockaddr_in &address);
+  void epoll_create();
+  void handle_accept(int sock);
+  std::string_view Server::read_msgs(int sock);
+  void handle_connections(int sock, int port);
 };
 
 #endif

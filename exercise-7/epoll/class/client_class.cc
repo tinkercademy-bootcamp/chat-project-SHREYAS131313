@@ -10,7 +10,7 @@ Client::~Client()
 {
   close(socket_fd);
 }
-void Client::start(int argc,char *argv[])
+int Client::start(int argc,char *argv[])
 {
   std::string message = read_args(argc, argv);
   int my_socket = create_socket();
@@ -18,6 +18,7 @@ void Client::start(int argc,char *argv[])
   connect_to_server(my_socket, server_address);
   send_and_receive_message(my_socket, message);
   close(my_socket);
+  return 1;
 }
 
 sockaddr_in Client::create_address(const std::string &server_ip, int port)

@@ -11,8 +11,9 @@ Server::~Server()
   close(socket_fd);
 }
 
-void Server::epoll_register(){
-  check_error(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, socket_fd, &event)==-1,"Failed to add file descriptor to epoll\n");
+void Server::e_poll_register()
+{
+  check_error(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, socket_fd, &event) == -1, "Failed to add file descriptor to epoll\n");
 }
 void Server::e_poll_create()
 {
@@ -20,7 +21,7 @@ void Server::e_poll_create()
   check_error(epoll_fd == -1, "Failed to create epoll file descriptor\n");
   event.events = EPOLLIN;
   event.data.fd = socket_fd;
-  epoll_register();
+  e_poll_register();
 }
 
 void Server::start()
@@ -69,8 +70,28 @@ void Server::start_listening_on_socket(int my_socket, sockaddr_in &address)
   bind_address_to_socket(my_socket, address);
   listen_on_socket(my_socket);
 }
-void Server::epoll_create()
+std::string_view Server::read_msgs(int sock)
 {
+  const int kBufferSize = 1024;
+  char buffer[kBufferSize] = {0};
+  ssize_t read_size = read(sock, buffer, kBufferSize);
+
+  check_error(read_size < 0,
+              "Read error on client socket " + std::to_string(sock));
+
+  if (read_size > 0)
+  {
+    std::string_view msg_recv(buffer, read_size);
+    return msg_recv;
+  }
+  else if (read_size == 0)
+  {
+    return "";
+  }
+  else
+  {
+    std::cerr << "Read error on client socket " << sock << "\n";
+  }
 }
 
 void Server::handle_accept(int sock)
@@ -95,18 +116,25 @@ void Server::handle_accept(int sock)
   {
     std::cerr << "Read error on client socket " << sock << "\n";
   }
-  close(sock);
+  // close(sock);
 }
 
 void Server::handle_connections(int sock, int port)
 {
   sockaddr_in address = create_address(port);
   socklen_t address_size = sizeof(address);
-
   while (true)
   {
-    int accepted_socket = accept(sock, (sockaddr *)&address, &address_size);
-    check_error(accepted_socket < 0, "Accept error n ");
-    handle_accept(accepted_socket);
+    event_count = epoll_wait(epoll_fd, events, MAX_EVENTS, -1);
+    for (int i = 0; i < event_count; i++)
+    {
+      if (events[i].data.fd == sock)
+      {
+        int client_fd = accept(sock, (sockaddr *)&address, &address_size);
+        // std::cout<<client_fd<<'\n';
+        check_error(client_fd < 0, "Accept error n ");
+        handle_accept(client_fd);
+      }
+    }
   }
 }

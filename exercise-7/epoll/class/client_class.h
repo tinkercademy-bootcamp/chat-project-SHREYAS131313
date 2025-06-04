@@ -6,15 +6,22 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string>
+#include <unordered_set>
 #include "../shared/shared.h"
+
+struct ClientInfo {
+  public:
+    std::string username;
+    std::unordered_set <int> channels_present_in;  
+};
 
 class Client{
   public:
   Client(int port,const std::string &ip);
   ~Client();
-  void start(int argc,char* argv[]);
+  int start(int argc,char* argv[]);
   private:
-    int cli_port;
+  int cli_port;
   sockaddr_in serv_address;
   std::string serv_ip;
   int socket_fd;
