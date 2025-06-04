@@ -11,16 +11,25 @@ Server::~Server()
   close(socket_fd);
 }
 
+void Server::epoll_register(){
+  check_error(epoll_ctl(epoll_fd, EPOLL_CTL_ADD, socket_fd, &event)==-1,"Failed to add file descriptor to epoll\n");
+}
+void Server::e_poll_create()
+{
+  epoll_fd = epoll_create1(0);
+  check_error(epoll_fd == -1, "Failed to create epoll file descriptor\n");
+  event.events = EPOLLIN;
+  event.data.fd = socket_fd;
+  epoll_register();
+}
+
 void Server::start()
 {
   int my_socket = socket_fd;
   sockaddr_in address = serv_address;
   start_listening_on_socket(my_socket, address);
   std::cout << "Server listening on port " << serv_port << "\n";
-  epoll_fd = epoll_create1(0);
-  check_error(epoll_fd == -1, "Failed to create epoll file descriptor\n");
-  event.events = EPOLLIN;
-  event.data.fd = 0;
+  e_poll_create();
   handle_connections(my_socket, serv_port);
 }
 
@@ -60,8 +69,8 @@ void Server::start_listening_on_socket(int my_socket, sockaddr_in &address)
   bind_address_to_socket(my_socket, address);
   listen_on_socket(my_socket);
 }
-void Server::epoll_create(){
-  
+void Server::epoll_create()
+{
 }
 
 void Server::handle_accept(int sock)

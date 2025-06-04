@@ -22,8 +22,9 @@ int serv_port;
 int socket_fd;
 sockaddr_in serv_address;
 int epoll_fd;
-  struct epoll_event event, events[MAX_EVENTS];
-
+struct epoll_event event, events[MAX_EVENTS];
+void e_poll_create();
+void epoll_register();
 
 void set_socket_options(int sock, int opt) ;
 sockaddr_in create_address(int port);
