@@ -55,22 +55,25 @@ int Client::start(int argc, char *argv[])
       {
         std::string input;
         std::getline(std::cin, input);
+        send_and_receive_message(my_socket, input); // send and receive (acknowledgement from server)
         if (input == "/quit")
         {
-          break;
+          close(epoll_fd);
+          close(my_socket);
+          return 1;
         }
-        send_and_receive_message(my_socket, input); // send and receive (acknowledgement from server)
       }
-      else if(fd == my_socket)
+      else if (fd == my_socket)
       {
-         std::memset(buffer, 0, kBufferSize);
+        std::memset(buffer, 0, kBufferSize);
         ssize_t recv_size = read(my_socket, buffer, kBufferSize);
         if (recv_size <= 0)
         {
           std::cout << "Server disconnected.\n";
+          return 0;
           break;
         }
-        std::cout << buffer << std::flush;
+        std::cout << buffer <<'\n';
       }
     }
   }

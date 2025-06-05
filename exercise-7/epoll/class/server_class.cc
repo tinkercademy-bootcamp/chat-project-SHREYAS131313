@@ -71,9 +71,9 @@ void Server::start_listening_on_socket(int my_socket, sockaddr_in &address)
   listen_on_socket(my_socket);
 }
 
-
 void Server::handle_accept(int client_fd)
 {
+
   const int kBufferSize = 1024;
   char buffer[kBufferSize] = {0};
   ssize_t read_size = read(client_fd, buffer, kBufferSize);
@@ -82,6 +82,7 @@ void Server::handle_accept(int client_fd)
               "Read error on client socket " + std::to_string(client_fd));
   if (read_size > 0)
   {
+
     std::cout << "Received:" << buffer << "\n";
 
     fcntl(client_fd, F_SETFL, O_NONBLOCK);
@@ -155,9 +156,9 @@ void Server::handle_connections(int sock, int port)
       {
         address_size = sizeof(address); // reset before accept
         int client_fd = accept(sock, (sockaddr *)&address, &address_size);
-        std::cout<<"Client fd = "<<client_fd<<'\n';
+        std::cout << "Client fd = " << client_fd << '\n';
         check_error(client_fd < 0, "Accept error n ");
-
+        client_manager.addClient(client_fd);
         handle_accept(client_fd);
       }
       else
@@ -176,7 +177,7 @@ void Server::handle_connections(int sock, int port)
         }
         else
         {
-          std::string recv_msg(buffer);
+          std::string recv_msg(buffer,bytes_read);
           std::cout << fd << " " << recv_msg << '\n';
           if (pending_usernames.count(fd))
           {
@@ -188,8 +189,9 @@ void Server::handle_connections(int sock, int port)
           else
           {
             // Handle command or message
-            auto parsed_result=parse_command(recv_msg);
-            client_manager.handle_client_message(fd, std::string(parsed_result.first),std::string(parsed_result.second));
+            auto parsed_result = parse_command(recv_msg);
+            std::cout << std::string(parsed_result.first) << ' ' << std::string(parsed_result.second) << '\n';
+            client_manager.handle_client_message(fd, std::string(parsed_result.first), std::string(parsed_result.second));
           }
         }
       }

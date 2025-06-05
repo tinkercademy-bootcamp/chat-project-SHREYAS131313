@@ -8,6 +8,7 @@ public:
     bool createChannel(const std::string& name);
     bool joinChannel(const std::string& channel_name, int client_fd);
     bool leaveChannel(const std::string& channel_name, int client_fd);
+    bool check_if_channel_exists(const std::string& name);
     std::unordered_map<std::string, Channel>& getChannels();
     std::string listChannels();
 

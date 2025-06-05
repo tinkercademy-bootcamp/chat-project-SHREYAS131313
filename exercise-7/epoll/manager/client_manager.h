@@ -8,7 +8,7 @@
 struct ClientInfo
 {
     std::string username;
-    std::string current_channel;
+   std::unordered_set<std::string> joined_channels;
 };
 
 class ClientManager
