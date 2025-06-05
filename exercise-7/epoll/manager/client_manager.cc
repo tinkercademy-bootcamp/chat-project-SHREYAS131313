@@ -130,7 +130,9 @@ void ClientManager::handle_client_message(int client_fd, std::string command, st
             }
         }
     }
-    else{
-
+    else
+    {
+        std::string err = "No such operation allowed. Valid commands are: /list, /create, /join, /message, /quit\n";
+        send(client_fd, err.c_str(), err.size(), 0);
     }
 }
