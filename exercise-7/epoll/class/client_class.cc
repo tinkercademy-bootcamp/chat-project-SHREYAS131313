@@ -17,20 +17,64 @@ int Client::start(int argc, char *argv[])
   sockaddr_in server_address = create_address(serv_ip, cli_port);
   connect_to_server(my_socket, server_address);
   send_and_receive_message(my_socket, message);
-  while (true)
-  {
-    std::string input;
-    std::getline(std::cin, input);
 
-    if (input == "/quit")
-    {
-      break;
-    }
-    // Send the message to the server
-    // send(my_socket, input.c_str(), input.size(), 0);
-    send_and_receive_message(my_socket,input);
+  std::string username;
+  std::getline(std::cin, username);
+  send(my_socket, username.c_str(), username.size(), 0);
+  const int kBufferSize = 1024;
+  char buffer[kBufferSize] = {0};
+  ssize_t read_size = read(my_socket, buffer, kBufferSize);
+  if (read_size > 0)
+  {
+    std::cout << buffer << std::flush; //  "Welcome! Use /list /create ..."
   }
 
+  // Set up epoll
+  int epoll_fd = epoll_create1(0);
+  struct epoll_event ev, events[2];
+
+  // Add socket and STDIN_FILENO to epoll , to check if you are taking input or you are receiving one.
+  // Add my_socket to epoll
+  ev.events = EPOLLIN;
+  ev.data.fd = my_socket;
+  epoll_ctl(epoll_fd, EPOLL_CTL_ADD, my_socket, &ev);
+
+  // Add STDIN_FILENO to epoll
+  ev.events = EPOLLIN;
+  ev.data.fd = STDIN_FILENO;
+  epoll_ctl(epoll_fd, EPOLL_CTL_ADD, STDIN_FILENO, &ev);
+
+  while (true)
+  {
+
+    int event_count = epoll_wait(epoll_fd, events, 2, -1);
+    for (int i = 0; i < event_count; ++i)
+    {
+      int fd = events[i].data.fd;
+      if (fd == STDIN_FILENO)
+      {
+        std::string input;
+        std::getline(std::cin, input);
+        if (input == "/quit")
+        {
+          break;
+        }
+        send_and_receive_message(my_socket, input); // send and receive (acknowledgement from server)
+      }
+      else if(fd == my_socket)
+      {
+         std::memset(buffer, 0, kBufferSize);
+        ssize_t recv_size = read(my_socket, buffer, kBufferSize);
+        if (recv_size <= 0)
+        {
+          std::cout << "Server disconnected.\n";
+          break;
+        }
+        std::cout << buffer << std::flush;
+      }
+    }
+  }
+  close(epoll_fd);
   close(my_socket);
   return 1;
 }
@@ -68,7 +112,7 @@ void Client::send_and_receive_message(int sock, const std::string &message)
   check_error(read_size < 0, "Read error.\n");
   if (read_size > 0)
   {
-    std::cout << "Received: " << recv_buffer << "\n";
+    std::cout << "Received: " << recv_buffer << "\n"; // reads Enter username
   }
   else if (read_size == 0)
   {

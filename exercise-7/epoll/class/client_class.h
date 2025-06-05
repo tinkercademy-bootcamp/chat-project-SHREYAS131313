@@ -6,7 +6,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <string>
+#include <cstring>
 #include <unordered_set>
+#include <sys/epoll.h>
 #include "../shared/shared.h"
 
 struct ClientInfo {
